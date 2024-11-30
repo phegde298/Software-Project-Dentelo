@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Dentelo - Dental Management System</title>
+</head>
+<body>
+    <header>
+        <h1>Dentelo</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+            <button id="login-btn">Login/Sign Up</button> <!-- Button to open modal -->
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <p>Welcome to Dentelo, your trusted dental clinic dedicated to providing top-notch dental care. Our facilities include state-of-the-art equipment and a team of experienced professionals ready to assist you.</p>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>Contact Details:</p>
+            <p>Email: contact@dentelo.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Login/Sign Up -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Select Your Role</h2>
+            <select id="role-select">
+                <option value="" disabled selected>Select Role</option>
+                <option value="patient">Patient</option>
+                <option value="admin">Admin</option>
+            </select>
+            
+            <!-- Patient Login Form -->
+            <div id="patient-login-form" style="display:none;">
+                <h2>Patient Login</h2>
+                <form id="login-form">
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#sign-up" id="show-signup">Sign up here</a></p>
+            </div>
+
+            <!-- Admin Login Form -->
+            <div id="admin-login-form" style="display:none;">
+                <h2>Admin Login</h2>
+                <form id="admin-login-form" action="/api/login/admin" method="POST">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" name="security_password" placeholder="Security Password" required>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+
+            <!-- Patient Sign Up Form -->
+            <div id="patient-signup-form" style="display:none;">
+                <h2>Patient Sign Up</h2>
+                <form id="sign-up-form">
+                    <input type="text" id="signup-fullname" placeholder="Full Name" required>
+                    <input type="email" id="signup-email" placeholder="Email" required>
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <input type="password" id="signup-confirm-password" placeholder="Confirm Password" required>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
