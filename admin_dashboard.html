@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your existing CSS file -->
+    <title>Admin Dashboard - Dentelo</title>
+    <style>
+        .info-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s;
+        }
+        .info-box:hover {
+            background-color: #e9e9e9;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-container {
+            margin-top: 10px;
+        }
+        .appointment-item {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dentelo</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="admin_dashboard.html">Admin Dashboard</a></li> <!-- Link to the admin dashboard -->
+            </ul>
+            <button id="logout-btn">Logout</button> <!-- Button to log out -->
+        </nav>
+    </header>
+    
+    <main>
+        <div class="dashboard-content">
+            <h1>Welcome to the Admin Dashboard</h1>
+
+            <!-- Manage Appointments Section -->
+            <section id="manage-appointments">
+                <h2>Manage Appointments</h2>
+                <div class="info-box" onclick="toggleView('appointments-management')">
+                    <p>Click here to view, approve, cancel, or reschedule patient appointments.</p>
+                </div>
+                <div id="appointments-management" class="hidden form-container">
+                    <div class="appointment-item">
+                        <p><strong>Appointment ID:</strong> 1</p>
+                        <p><strong>Date:</strong> 2023-10-01</p>
+                        <p><strong>Time:</strong> 10:00 AM</p>
+                        <p><strong>Status:</strong> <span style="color: green;">Approved</span></p>
+                        <select onchange="updateAppointmentStatus(1, this.value)">
+                            <option value="">Select Action</option>
+                            <option value="approve">Approve</option>
+                            <option value="cancel">Cancel</option>
+                            <option value="reschedule">Reschedule</option>
+                        </select>
+                    </div>
+                    <div class="appointment-item">
+                        <p><strong>Appointment ID:</strong> 2</p>
+                        <p><strong>Date:</strong> 2023-10-15</p>
+                        <p><strong>Time:</strong> 2:00 PM</p>
+                        <p><strong>Status:</strong> <span style="color: orange;">Pending</span></p>
+                        <select onchange="updateAppointmentStatus(2, this.value)">
+                            <option value="">Select Action</option>
+                            <option value="approve">Approve</option>
+                            <option value="cancel">Cancel</option>
+                            <option value="reschedule">Reschedule</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Patient Management Section -->
+            <section id="patient-management">
+                <h2>Patient Management</h2>
+                <div class="info-box" onclick="toggleView('patient-management-info')">
+                    <p>Click here to view patient history, medical records, and treatment progress.</p>
+                </div>
+                <div id="patient-management-info" class="hidden form-container">
+                    <p><strong>Patient ID:</strong> 101</p>
+                    <p><strong>Name:</strong> John Doe</p>
+                    <p><strong>Medical History:</strong> No known allergies, previous dental surgery in 2022.</p>
+                    <p><strong>Treatment Progress:</strong> Completed teeth cleaning, scheduled for follow-up in 6 months.</p>
+                </div>
+            </section>
+
+            <!-- Reports and Analytics Section -->
+            <section id="reports-analytics">
+                <h2>Reports and Analytics</h2>
+                <div class="info-box" onclick="toggleView(' reports-info')">
+                    <p>Click here to generate reports on appointments, revenue, treatments, etc.</p>
+                </div>
+                <div id="reports-info" class="hidden form-container">
+                    <p><strong>Monthly Revenue Report:</strong></p>
+                    <ul>
+                        <li>October 2023: $5,000</li>
+                        <li>September 2023: $4,500</li>
+                        <li>August 2023: $4,800</li>
+                    </ul>
+                    <p><strong>Appointment Statistics:</strong></p>
+                    <ul>
+                        <li>Total Appointments: 150</li>
+                        <li>Approved: 120</li>
+                        <li>Pending: 30</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Staff Management Section -->
+            <section id="staff-management">
+                <h2>Staff Management</h2>
+                <div class="info-box" onclick="toggleView('staff-management-info')">
+                    <p>Click here to manage dentist availability, scheduling, and resources.</p>
+                </div>
+                <div id="staff-management-info" class="hidden form-container">
+                    <p><strong>Staff List:</strong></p>
+                    <ul>
+                        <li>Dr. Alice Smith - Available: Mon-Fri, 9 AM - 5 PM</li>
+                        <li>Dr. Bob Johnson - Available: Tue-Thu, 10 AM - 6 PM</li>
+                        <li>Dr. Carol Williams - Available: Mon-Sat, 8 AM - 4 PM</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>Contact Details:</p>
+            <p>Email: contact@dentelo.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to your existing JavaScript file -->
+    <script>
+        function toggleView(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+            } else {
+                element.classList.add('hidden');
+            }
+        }
+
+        // Example function to fetch and display appointments
+        function fetchAppointments() {
+            // Simulate fetching appointments
+        }
+
+        function updateAppointmentStatus(appointmentId, action) {
+            // Handle appointment status update logic here
+            if (action === 'approve') {
+                alert(`Appointment ID ${appointmentId} has been approved.`);
+            } else if (action === 'cancel') {
+                alert(`Appointment ID ${appointmentId} has been canceled.`);
+            } else if (action === 'reschedule') {
+                alert(`Appointment ID ${appointmentId} needs to be rescheduled.`);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Patient Login & Sign Up - Dentelo</title>
+</head>
+<body>
+    <header>
+        <h1>Dentelo</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+            <a href="#login" id="login-btn">Login/Sign Up</a>
+        </nav>
+    </header>
+    <main>
+        <section id="patient-auth" style="text-align: center;">
+            <h2>Patient Login</h2>
+            <form id="login-form" action="/api/login" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#sign-up">Sign up first</a></p>
+            
+            <h2 id="sign-up">Patient Sign Up</h2>
+            <form id="sign-up-form" action="/api/signup" method="POST">
+                <input type="text" name="fullName" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>Contact Details:</p>
+            <p>Email: contact@dentelo.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

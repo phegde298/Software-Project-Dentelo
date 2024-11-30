@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your existing CSS file -->
+    <title>Patient Dashboard - Dentelo</title>
+    <style>
+        .info-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s;
+        }
+        .info-box:hover {
+            background-color: #e9e9e9;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-container {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dentelo</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="patient_dashboard.html">Dashboard</a></li> <!-- Link to the dashboard -->
+            </ul>
+            <button id="login-btn">Login/Sign Up</button> <!-- Button to open modal -->
+        </nav>
+    </header>
+    
+    <main>
+        <div class="dashboard-content">
+            <h1>Welcome to Your Dashboard</h1>
+
+            <!-- View Appointments Section -->
+            <section id="view-appointments">
+                <h2>View Appointments</h2>
+                <div class="info-box" onclick="toggleView('appointments-list')">
+                    <p>Click here to view your past and upcoming appointments.</p>
+                </div>
+                <div id="appointments-list" class="hidden form-container">
+                    <p>Loading appointments...</p>
+                </div>
+            </section>
+
+            <!-- Update Appointment Details Section -->
+            <section id="update-appointment">
+                <h2>Update Appointment Details</h2>
+                <div class="info-box" onclick="toggleView('update-appointment-form')">
+                    <p>Click here to update your appointment details.</p>
+                </div>
+                <div id="update-appointment-form" class="hidden form-container">
+                    <form>
+                        <label for="appointment-id">Appointment ID:</label>
+                        <input type="text" id="appointment-id" name="appointment-id" required>
+                        <label for="new-details">New Details:</label>
+                        <textarea id="new-details" name="new-details" required></textarea>
+                        <button type="submit">Update Appointment</button>
+                    </form>
+                    <div id="update-message"></div>
+                </div>
+            </section>
+
+            <!-- Book New Appointment Section -->
+            <section id="book-appointment">
+                <h2>Book New Appointment</h2>
+                <div class="info-box" onclick="toggleView('book-appointment-form')">
+                    <p>Click here to book a new appointment.</p>
+                </div>
+                <div id="book-appointment-form" class="hidden form-container">
+                    <form>
+                        <label for="appointment-date">Date:</label>
+                        <input type="date" id="appointment-date" name="appointment-date" required>
+                        <label for="appointment-time">Time:</label>
+                        <input type="time" id="appointment-time" name="appointment-time" required>
+                        <button type="submit">Book Appointment</button>
+                    </form>
+                    <div id="booking-message"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>Contact Details:</p>
+            <p>Email: contact@dentelo.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to your existing JavaScript file -->
+    <script>
+        function toggleView(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+            } else {
+                element.classList.add('hidden');
+            }
+        }
+
+        // Example function to fetch and display appointments
+        function fetchAppointments() {
+            // // Simulate fetching appointments
+            const appointments = [
+                { id: 1, date: '2023-10-01', time: '10:00 AM', details: 'Dental Checkup' },
+                { id: 2, date: '2023-10-15', time: '2:00 PM', details: 'Teeth Cleaning' }
+            ];
+            const appointmentsList = document.getElementById('appointments-list');
+            appointmentsList.innerHTML = ''; // Clear previous content
+            appointments.forEach(appointment => {
+                const appointmentItem = document.createElement('p');
+                appointmentItem.textContent = `ID: ${appointment.id}, Date: ${appointment.date}, Time: ${appointment.time}, Details: ${appointment.details}`;
+                appointmentsList.appendChild(appointmentItem);
+            });
+        }
+
+        // Call fetchAppointments on page load
+        window.onload = fetchAppointments;
+    </script>
+</body>
+</html>
